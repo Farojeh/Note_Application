@@ -4,6 +4,7 @@ import 'package:notes/constans.dart';
 import 'package:notes/controller/read_notes_controller.dart';
 import 'package:notes/models/note_model.dart';
 import 'package:notes/views/screen_note.dart';
+import 'package:notes/views/widget/error.dart';
 import 'package:notes/views/widget/text_item.dart';
 
 class NotesItem extends StatelessWidget {
@@ -65,7 +66,8 @@ class NotesItem extends StatelessWidget {
             note.delete();
             controller.fetchallnotes();
            }catch(error){
-             print(error);
+            // ignore: use_build_context_synchronously
+                 showDialog(context: context, builder:(ctx)=> ErrorDialog(error: error.toString(),));
            }
           }, child:const Icon(Icons.delete , size: 27, color: Colors.redAccent,)) )
       ],

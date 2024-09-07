@@ -6,6 +6,7 @@ import 'package:notes/controller/add_note_controller.dart';
 import 'package:notes/models/note_model.dart';
 import 'package:notes/views/widget/botton.dart';
 import 'package:notes/views/widget/custom_text_field.dart';
+import 'package:notes/views/widget/error.dart';
 
 class Addnoteform extends StatefulWidget {
   const Addnoteform({
@@ -64,7 +65,8 @@ class _AddnoteformState extends State<Addnoteform> {
                   await controller.addNote(notemodel);
                   Get.back();
                  }catch(error){
-                  print(error);
+                 // ignore: use_build_context_synchronously
+                 showDialog(context: context, builder:(ctx)=> ErrorDialog(error: error.toString(),));
                  }
                 }else{
                   autovalidateMode = AutovalidateMode.always;
